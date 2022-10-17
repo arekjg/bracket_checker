@@ -43,34 +43,37 @@ int main()
 	cout << "It checks if given brackets are in correct order.\n";
 	cout << "Valid brackets include : () {} [] <>. Every other character will be ignored.\n";
 	cout << "Insert brackets in one line: ";
-	cin >> input;
+	getline(cin, input);
 
-	// Push first bracket from user's input to stack
-	brackets.push(input[0]);
-
-	for (char i = 1; i < input.length(); i++)
+	for (int i = 0; i < input.length(); i++)
 	{
-		// IGNORE OTHER CHARACTERS THAN BRACKETS
-		//if (find(chP.br.begin(), chP.br.end(), input[i]) != chP.br.end())
-		//{
-
-		//}
-
-
-		// If stack is empty, push char on top
-		if (brackets.empty())
+		// Check if character from input is a bracket (if not, it will be ignored)
+		int check = 0;
+		for (int j = 0; j < 8; j++)
 		{
-			brackets.push(input[i]);
+			if (input[i] == chP.br[j])
+			{
+				check++;
+			}
 		}
-		// If checkPair is true, pop from stack
-		else if (checkPair(brackets.top(), input[i]))
+
+		if (check > 0)
 		{
-			brackets.pop();
-		}
-		// If stack is not empty and checkPair is false, push char on top
-		else
-		{
-			brackets.push(input[i]);
+			// If stack is empty, push char on top
+			if (brackets.empty())
+			{
+				brackets.push(input[i]);
+			}
+			// If checkPair is true, pop from stack
+			else if (checkPair(brackets.top(), input[i]))
+			{
+				brackets.pop();
+			}
+			// If stack is not empty and checkPair is false, push char on top
+			else
+			{
+				brackets.push(input[i]);
+			}
 		}
 	}
 
@@ -83,8 +86,4 @@ int main()
 	{
 		cout << "Invalid!";
 	}
-
-
 }
-
-// add ignoring other characters than brackets
