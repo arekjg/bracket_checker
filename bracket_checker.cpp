@@ -5,24 +5,16 @@
 
 using namespace std;
 
-class BracketTypes
-{
-	public:
-		// Char arrays with open brackets and close brackets
-		char brackets_open[4] = { '(', '{', '[', '<' };
-		char brackets_close[4] = { ')', '}', ']', '>' };
-		vector<char> br{ '(', '{', '[', '<', ')', '}', ']', '>' };
-};
-
 bool checkPair(char bracket1, char bracket2)
 {
-	// Create an object of BracketTypes
-	BracketTypes chP;
+	// Char arrays with open brackets and close brackets
+	char brackets_open[4] = { '(', '{', '[', '<' };
+	char brackets_close[4] = { ')', '}', ']', '>' };
 
 	// Check if given brackets are their self opposites
 	for (int i = 0; i < 4; i++)
 	{
-		if (bracket1 == chP.brackets_open[i] && bracket2 == chP.brackets_close[i])
+		if (bracket1 == brackets_open[i] && bracket2 == brackets_close[i])
 		{
 			return true;
 		}
@@ -32,12 +24,12 @@ bool checkPair(char bracket1, char bracket2)
 
 int main()
 {
+	// vector storing all valid brackets
+	vector<char> br{ '(', '{', '[', '<', ')', '}', ']', '>' };
+
 	// Initialize stack and user input
 	stack<char> brackets;
 	string input;
-
-	// Create an object of BracketTypes
-	BracketTypes chP;
 
 	cout << "Welcome to bracket checker!\n";
 	cout << "It checks if given brackets are in correct order.\n";
@@ -51,7 +43,7 @@ int main()
 		int check = 0;
 		for (int j = 0; j < 8; j++)
 		{
-			if (input[i] == chP.br[j])
+			if (input[i] == br[j])
 			{
 				check++;
 			}
